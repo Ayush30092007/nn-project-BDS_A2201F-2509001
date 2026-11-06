@@ -1,0 +1,51 @@
+File: /app/data/Dry_Bean_Dataset.xlsx
+Rows loaded: 13611 | columns: 17 (16 features + 1 label)
+Missing values: 0
+Exact duplicate rows removed: 68
+Rows after cleaning: 13543
+
+Class distribution (after cleaning):
+  DERMASON      3546  (26.2%)
+  SIRA          2636  (19.5%)
+  SEKER         2027  (15.0%)
+  HOROZ         1860  (13.7%)
+  CALI          1630  (12.0%)
+  BARBUNYA      1322  (9.8%)
+  BOMBAY         522  (3.9%)
+Imbalance ratio (largest / smallest class): 6.8
+
+Feature ranges (min .. max) - note the very different scales:
+  Area                  20420.0000 .. 254616.0000   
+  Perimeter               524.7360 .. 1985.3700     
+  MajorAxisLength         183.6012 .. 738.8602      
+  MinorAxisLength         122.5127 .. 460.1985      
+  AspectRation              1.0249 .. 2.4303        
+  Eccentricity              0.2190 .. 0.9114        
+  ConvexArea            20684.0000 .. 263261.0000   
+  EquivDiameter           161.2438 .. 569.3744      
+  Extent                    0.5553 .. 0.8662        
+  Solidity                  0.9192 .. 0.9947        
+  roundness                 0.4896 .. 0.9907        
+  Compactness               0.6406 .. 0.9873        
+  ShapeFactor1              0.0028 .. 0.0105        
+  ShapeFactor2              0.0006 .. 0.0037        
+  ShapeFactor3              0.4103 .. 0.9748        
+  ShapeFactor4              0.9477 .. 0.9997        
+
+Outliers per feature (IQR rule, kept in the data):
+  Area                 551
+  Perimeter            500
+  MajorAxisLength      379
+  MinorAxisLength      567
+  AspectRation         485
+  Eccentricity         833
+  ConvexArea           549
+  EquivDiameter        526
+  Extent               271
+  Solidity             774
+  roundness             98
+  Compactness          124
+  ShapeFactor1         533
+  ShapeFactor2           0
+  ShapeFactor3         202
+  ShapeFactor4         760

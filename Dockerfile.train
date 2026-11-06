@@ -1,0 +1,21 @@
+# Training image: has everything needed to explore data, run experiments and train.
+# Data, models and outputs are mounted as volumes (NOT copied into the image).
+FROM python:3.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONHASHSEED=0 \
+    OMP_NUM_THREADS=1 \
+    MKL_NUM_THREADS=1 \
+    MPLBACKEND=Agg
+
+WORKDIR /app
+
+COPY requirements-train.txt .
+RUN pip install --no-cache-dir -r requirements-train.txt
+
+COPY src/ ./src/
+
+# Default action = the FINAL training run (evaluates the test set once, saves model to /app/models).
+# For other jobs, override the command, e.g.:  docker run ... nn-train python src/explore.py
+CMD ["python", "src/train.py", "--final"]

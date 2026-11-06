@@ -1,0 +1,21 @@
+# Testing image: small, inference only (torch + numpy). It never sees the training environment.
+# It needs only the models/ folder (model, preprocessing info, saved test rows) mounted at /app/models.
+FROM python:3.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONHASHSEED=0 \
+    OMP_NUM_THREADS=1 \
+    MKL_NUM_THREADS=1
+
+WORKDIR /app
+
+COPY requirements-test.txt .
+RUN pip install --no-cache-dir -r requirements-test.txt
+
+# Only the files needed for inference - not data_prep.py, train.py, explore.py ...
+COPY src/common.py src/model.py src/test.py src/predict.py ./src/
+
+# Default action = evaluate on the test set and print metrics.
+# New sample:  docker run ... nn-test python src/predict.py --features "v1,...,v16"
+CMD ["python", "src/test.py"]

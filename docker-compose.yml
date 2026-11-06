@@ -1,0 +1,32 @@
+# Optional convenience: short commands instead of long 'docker run' lines.
+#   docker compose build
+#   docker compose run --rm explore       # EDA figures
+#   docker compose run --rm experiments   # baseline + experiments -> experiment log
+#   docker compose run --rm train         # FINAL training (test set used once)
+#   docker compose run --rm test          # test container (can be run on another machine)
+services:
+  train: &train
+    build:
+      context: .
+      dockerfile: Dockerfile.train
+    image: nn-train
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./outputs:/app/outputs
+
+  explore:
+    <<: *train
+    command: ["python", "src/explore.py"]
+
+  experiments:
+    <<: *train
+    command: ["python", "src/run_experiments.py"]
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    image: nn-test
+    volumes:
+      - ./models:/app/models

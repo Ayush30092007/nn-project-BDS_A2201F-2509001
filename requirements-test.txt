@@ -1,0 +1,5 @@
+# The test image only needs what is required for inference: torch + numpy.
+# (No pandas, scikit-learn, matplotlib or openpyxl.) Same versions as training.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0
+numpy==2.5.3

@@ -1,0 +1,5 @@
+Layer    Shape       Neurons  Activation                  Parameters
+hidden1  16 -> 32    32       ReLU                               544
+hidden2  32 -> 16    16       ReLU                               528
+output   16 -> 7     7        Softmax (inside the loss)          119
+TOTAL                                                          1,191
